@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const postImage = document.getElementById('postImage');
     const postsContainer = document.getElementById('postsContainer');
 
-    // Load posts from local storage
+    // Load posts from local storage on page load
     loadPosts();
 
     postForm.addEventListener('submit', function (event) {
@@ -73,8 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updatePostLikes(post) {
         let posts = JSON.parse(localStorage.getItem('posts')) || [];
-        posts = posts.map(p => p.content === post.content ? post : p);
+        posts = posts.map(p => (p.dateTime === post.dateTime && p.content === post.content) ? post : p);
         localStorage.setItem('posts', JSON.stringify(posts));
     }
 });
-
