@@ -11,11 +11,10 @@
         <h1>Microblogging App</h1>
         <form id="postForm">
             <textarea id="postContent" placeholder="What's on your mind?" required></textarea>
+            <input type="file" id="postImage" accept="image/*">
             <button type="submit">Post</button>
         </form>
-        <div id="postsContainer">
-            <!-- Posts will be dynamically added here -->
-        </div>
+        <div id="postsContainer"></div>
     </div>
     <script src="script.js"></script>
 </body>
