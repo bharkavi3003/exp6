@@ -1,14 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     const postForm = document.getElementById('postForm');
     const postContent = document.getElementById('postContent');
+    const postImage = document.getElementById('postImage');
     const postsContainer = document.getElementById('postsContainer');
 
     postForm.addEventListener('submit', (event) => {
         event.preventDefault();
 
         const content = postContent.value.trim();
+        const imageFile = postImage.files[0];
 
-        if (content) {
+        if (content || imageFile) {
             const postDiv = document.createElement('div');
             postDiv.classList.add('post');
 
@@ -22,6 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const textPara = document.createElement('p');
             textPara.textContent = content;
             postDiv.appendChild(textPara);
+
+            // Add image if available
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = document.createElement('img');
+                    img.src = event.target.result;
+                    postDiv.appendChild(img);
+                };
+                reader.readAsDataURL(imageFile);
+            }
 
             // Add like/dislike section
             const likeSection = document.createElement('div');
@@ -77,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Clear form fields
             postContent.value = '';
+            postImage.value = '';
         }
     });
 });
