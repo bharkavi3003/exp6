@@ -34,10 +34,6 @@ textarea {
     resize: vertical;
 }
 
-input[type="file"] {
-    margin-bottom: 10px;
-}
-
 button {
     padding: 10px;
     background-color: #007bff;
@@ -59,19 +55,13 @@ button:hover {
     background-color: #fff;
 }
 
-.post img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-}
-
 .timestamp {
     font-size: 0.8em;
     color: #666;
     margin-bottom: 10px;
 }
 
-.like-section, .comment-section {
+.like-section {
     display: flex;
     align-items: center;
     margin-top: 10px;
@@ -86,19 +76,14 @@ button:hover {
     margin-right: 10px;
 }
 
-.like-button.liked {
-    color: #ff0000; /* Red color for liked state */
-}
-
-.dislike-button.disliked {
-    color: #ff0000; /* Red color for disliked state */
+.comment-section {
+    margin-top: 10px;
 }
 
 .comment-input {
     width: 80%;
     padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    margin-right: 5px;
 }
 
 .comment-button {
@@ -110,11 +95,6 @@ button:hover {
     cursor: pointer;
 }
 
-.comment-button:hover {
-    background-color: #0056b3;
-}
-
-.comments-list {
-    margin-top: 10px;
-    padding-left: 20px;
+.comment-item {
+    margin-left: 20px;
 }
