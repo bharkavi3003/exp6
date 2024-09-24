@@ -18,7 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
             content: content,
             image: imageUrl,
             dateTime: dateTime,
-            likes: 0
+            likes: 0,
+            dislikes: 0,
+            comments: []
         };
 
         // Save post to local storage
@@ -64,11 +66,52 @@ document.addEventListener('DOMContentLoaded', () => {
             updatePostLikes(post);
         });
 
+        const dislikeButton = document.createElement('span');
+        dislikeButton.textContent = ` 👎 ${post.dislikes}`;
+        dislikeButton.classList.add('dislike-button');
+        dislikeButton.addEventListener('click', () => {
+            post.dislikes++;
+            dislikeButton.textContent = ` 👎 ${post.dislikes}`;
+            updatePostDislikes(post);
+        });
+
+        const commentInput = document.createElement('input');
+        commentInput.placeholder = "Add a comment...";
+        const commentButton = document.createElement('button');
+        commentButton.textContent = "Comment";
+
+        commentButton.addEventListener('click', () => {
+            const comment = commentInput.value;
+            if (comment) {
+                post.comments.push(comment);
+                savePostComments(post);
+                displayComment(post, comment);
+                commentInput.value = ''; // Clear input
+            }
+        });
+
+        const commentsDiv = document.createElement('div');
+        commentsDiv.classList.add('comments');
+
+        post.comments.forEach(comment => displayComment(post, comment));
+
         postDiv.appendChild(content);
         if (post.image) postDiv.appendChild(image);
         postDiv.appendChild(dateTime);
         postDiv.appendChild(likeButton);
+        postDiv.appendChild(dislikeButton);
+        postDiv.appendChild(commentInput);
+        postDiv.appendChild(commentButton);
+        postDiv.appendChild(commentsDiv);
         postsContainer.appendChild(postDiv);
+    }
+
+    function displayComment(post, comment) {
+        const commentsDiv = Array.from(postsContainer.children).find(div => div.querySelector('small').textContent === post.dateTime).querySelector('.comments');
+        const commentDiv = document.createElement('div');
+        commentDiv.classList.add('comment');
+        commentDiv.textContent = comment;
+        commentsDiv.appendChild(commentDiv);
     }
 
     function updatePostLikes(post) {
@@ -76,4 +119,17 @@ document.addEventListener('DOMContentLoaded', () => {
         posts = posts.map(p => (p.dateTime === post.dateTime && p.content === post.content) ? post : p);
         localStorage.setItem('posts', JSON.stringify(posts));
     }
+
+    function updatePostDislikes(post) {
+        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+        posts = posts.map(p => (p.dateTime === post.dateTime && p.content === post.content) ? post : p);
+        localStorage.setItem('posts', JSON.stringify(posts));
+    }
+
+    function savePostComments(post) {
+        let posts = JSON.parse(localStorage.getItem('posts')) || [];
+        posts = posts.map(p => (p.dateTime === post.dateTime && p.content === post.content) ? post : p);
+        localStorage.setItem('posts', JSON.stringify(posts));
+    }
 });
+
