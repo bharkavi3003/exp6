@@ -84,19 +84,14 @@ button:hover {
     cursor: pointer;
     font-size: 1.5em;
     margin-right: 10px;
-    transition: color 0.3s ease;
 }
 
 .like-button.liked {
-    color: #ff0000;
+    color: #ff0000; /* Red color for liked state */
 }
 
 .dislike-button.disliked {
-    color: #ff0000;
-}
-
-.comment-box {
-    margin-top: 10px;
+    color: #ff0000; /* Red color for disliked state */
 }
 
 .comment-input {
@@ -117,4 +112,9 @@ button:hover {
 
 .comment-button:hover {
     background-color: #0056b3;
+}
+
+.comments-list {
+    margin-top: 10px;
+    padding-left: 20px;
 }
