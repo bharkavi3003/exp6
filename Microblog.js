@@ -93,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const commentsDiv = document.createElement('div');
         commentsDiv.classList.add('comments');
 
+        // Display existing comments
         post.comments.forEach(comment => displayComment(post, comment));
 
         postDiv.appendChild(content);
@@ -132,4 +133,3 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('posts', JSON.stringify(posts));
     }
 });
-
