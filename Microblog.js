@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+}document.addEventListener('DOMContentLoaded', () => {
     const postForm = document.getElementById('postForm');
     const postContent = document.getElementById('postContent');
     const postImage = document.getElementById('postImage');
@@ -67,6 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Clear form fields
             postContent.value = '';
             postImage.value = '';
-        }
+        
     });
 });
