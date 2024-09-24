@@ -25,44 +25,67 @@ document.addEventListener('DOMContentLoaded', () => {
             textPara.textContent = content;
             postDiv.appendChild(textPara);
 
-            // Initialize like count
-            let likeCount = 0;
-
             // Add image if available
             if (imageFile) {
                 const reader = new FileReader();
                 reader.onload = function(event) {
                     const img = document.createElement('img');
                     img.src = event.target.result;
-                    img.style.maxWidth = '100%'; // Make sure the image fits
                     postDiv.appendChild(img);
                 };
                 reader.readAsDataURL(imageFile);
             }
 
-            // Add like section
+            // Add like/dislike section
             const likeSection = document.createElement('div');
             likeSection.classList.add('like-section');
 
-            // Add heart button
             const likeButton = document.createElement('button');
             likeButton.classList.add('like-button');
-            likeButton.innerHTML = '&#10084;'; // Unicode heart symbol
-
-            // Add like text
-            const likeText = document.createElement('span');
-            likeText.classList.add('like-text');
-            likeText.textContent = ' Like (0)'; // Initial like text
-
+            likeButton.innerHTML = '&#10084;'; // Heart symbol
+            likeButton.dataset.count = 0; // Initialize like count
             likeButton.addEventListener('click', () => {
                 likeButton.classList.toggle('liked');
-                likeText.textContent = ` Like (${likeButton.classList.contains('liked') ? ++likeCount : --likeCount})`;
-                likeText.classList.toggle('liked', likeButton.classList.contains('liked'));
+                likeButton.dataset.count = likeButton.classList.contains('liked') ? parseInt(likeButton.dataset.count) + 1 : parseInt(likeButton.dataset.count) - 1;
+                updateLikeCount(likeButton);
+            });
+            likeSection.appendChild(likeButton);
+
+            const dislikeButton = document.createElement('button');
+            dislikeButton.classList.add('dislike-button');
+            dislikeButton.innerHTML = '&#10060;'; // Cross symbol
+            dislikeButton.dataset.count = 0; // Initialize dislike count
+            dislikeButton.addEventListener('click', () => {
+                dislikeButton.classList.toggle('disliked');
+                dislikeButton.dataset.count = dislikeButton.classList.contains('disliked') ? parseInt(dislikeButton.dataset.count) + 1 : parseInt(dislikeButton.dataset.count) - 1;
+                updateDislikeCount(dislikeButton);
+            });
+            likeSection.appendChild(dislikeButton);
+
+            postDiv.appendChild(likeSection);
+
+            // Add comment section
+            const commentSection = document.createElement('div');
+            commentSection.classList.add('comment-section');
+            const commentInput = document.createElement('input');
+            commentInput.classList.add('comment-input');
+            commentInput.placeholder = 'Add a comment...';
+            const commentButton = document.createElement('button');
+            commentButton.classList.add('comment-button');
+            commentButton.textContent = 'Comment';
+
+            commentButton.addEventListener('click', () => {
+                if (commentInput.value.trim()) {
+                    const commentText = document.createElement('p');
+                    commentText.textContent = commentInput.value;
+                    commentSection.appendChild(commentText);
+                    commentInput.value = ''; // Clear input
+                }
             });
 
-            likeSection.appendChild(likeButton);
-            likeSection.appendChild(likeText);
-            postDiv.appendChild(likeSection);
+            commentSection.appendChild(commentInput);
+            commentSection.appendChild(commentButton);
+            postDiv.appendChild(commentSection);
 
             postsContainer.appendChild(postDiv);
 
@@ -71,4 +94,15 @@ document.addEventListener('DOMContentLoaded', () => {
             postImage.value = '';
         }
     });
+
+    function updateLikeCount(button) {
+        const count = button.dataset.count;
+        button.textContent = count > 0 ? `Liked (${count})` : '';
+    }
+
+    function updateDislikeCount(button) {
+        const count = button.dataset.count;
+        button.textContent = count > 0 ? `Disliked (${count})` : '';
+    }
 });
+
