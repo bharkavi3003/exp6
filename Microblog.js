@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (commentInput.value.trim()) {
                     const commentText = document.createElement('p');
                     commentText.textContent = commentInput.value;
+                    commentText.classList.add('comment-item');
                     commentSection.appendChild(commentText);
                     commentInput.value = ''; // Clear input
                 }
@@ -97,12 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateLikeCount(button) {
         const count = button.dataset.count;
-        button.textContent = count > 0 ? `Liked (${count})` : '';
+        button.textContent = count > 0 ? `Liked (${count})` : 'Like';
     }
 
     function updateDislikeCount(button) {
         const count = button.dataset.count;
-        button.textContent = count > 0 ? `Disliked (${count})` : '';
+        button.textContent = count > 0 ? `Disliked (${count})` : 'Dislike';
     }
 });
-
