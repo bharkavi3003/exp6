@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #ff6347;
+    padding: 15px 30px;
+    color: white;
+}
+
+header .logo h1 {
+    font-size: 2em;
+}
+
+header .cart button {
+    background-color: #fff;
+    color: #ff6347;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+header .cart button:hover {
+    background-color: #ff4500;
+}
+
+main {
+    padding: 20px;
+}
+
+.restaurants h2 {
+    margin-bottom: 20px;
+}
+
+.restaurant-list {
+    display: flex;
+    gap: 20px;
+}
+
+.restaurant {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 200px;
+}
+
+.restaurant h3 {
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #ff4500;
+}
+
+.menu, .cart-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu h2, .cart-section h2 {
+    margin-bottom: 20px;
+}
+
+.menu div, .cart-section div {
+    margin-bottom: 10px;
+}
+
+.cart-section p {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
