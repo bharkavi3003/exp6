@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery</title>
+    <link rel="stylesheet" href="food sample.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Food Delivery</h1>
+            <p id="restaurant-location">Restaurant Location: 123 Food Street, Kavi Restaurant, Trichy</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Restaurant Selection -->
+        <div id="restaurant-selection">
+            <h2>Select a Restaurant</h2>
+            <button onclick="loadMenu('Kavi Restaurant', '123 Food Street, Trichy', restaurantKavi.menu)">Kavi Restaurant</button>
+            <button onclick="loadMenu('Spicy Delights', '456 Spice Lane, Chennai', restaurantSpicyDelights.menu)">Spicy Delights</button>
+        </div>
+
+        <!-- Menu -->
+        <div id="menu">
+            <h2>Menu</h2>
+            <ul id="menuItems"></ul>
+        </div>
+
+        <!-- Cart Container -->
+        <div id="cart-container">
+            <h2>Your Cart</h2>
+            <ul id="cartItems"></ul>
+            <p id="totalPrice">Total Price: $0.00</p>
+            <button id="clearCartBtn">Clear Cart</button>
+            <button id="checkoutBtn">Checkout</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Food Delivery. All Rights Reserved.</p>
+    </footer>
+
+    <script src="food sample.js"></script>
+</body>
+</html>

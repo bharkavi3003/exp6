@@ -1,0 +1,238 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header .header-container h1 {
+    font-size: 2.5em;
+}
+
+header p {
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+
+/* Container (Main Content) */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+/* Restaurant Selection */
+#restaurant-selection {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#restaurant-selection h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+#restaurant-selection button {
+    background-color: #333;
+    color: white;
+    font-size: 1.2em;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#restaurant-selection button:hover {
+    background-color: #555;
+}
+
+/* Menu */
+#menu {
+    width: 60%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#menu h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#menuItems {
+    list-style-type: none;
+}
+
+#menuItems li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#menuItems img {
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+    border-radius: 5px;
+}
+
+#menuItems button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#menuItems button:hover {
+    background-color: #218838;
+}
+
+/* Cart Container */
+#cart-container {
+    width: 30%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+#cart-container h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#cartItems {
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+#cartItems li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#cartItems button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.9em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#cartItems button:hover {
+    background-color: #c82333;
+}
+
+#totalPrice {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Cart Action Buttons */
+#clearCartBtn, #checkoutBtn {
+    background-color: #007bff;
+    color: white;
+    font-size: 1.2em;
+    border: none;
+    padding: 12px 25px;
+    width: 100%;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#clearCartBtn:hover, #checkoutBtn:hover {
+    background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #menu {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    #cart-container {
+        width: 90%;
+    }
+
+    #restaurant-selection {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    #menuItems li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #menuItems img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 10px;
+    }
+
+    #menuItems button {
+        width: 100%;
+    }
+
+    #cartItems li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #cartItems button {
+        width: 100%;
+    }
+}
