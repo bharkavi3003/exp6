@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ads Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Ads</h1>
+    <form id="ad-form">
+      <input type="text" id="product-name" placeholder="Product Name" required>
+      <input type="text" id="product-description" placeholder="Product Description" required>
+      <input type="number" id="product-price" placeholder="Product Price" required>
+      <input type="url" id="product-image" placeholder="Product Image URL" required>
+      <button type="submit">Add Ad</button>
+    </form>
+
+    <h2>Available Ads:</h2>
+    <div id="ads-container"></div>
+
+    <p><a href="login.html" id="logout">Logout</a></p>
+  </div>
+
+  <script src="ads.js"></script>
+  
+</body>
+</html>
