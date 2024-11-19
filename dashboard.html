@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <h1>Task Management Dashboard</h1>
+  
+  <!-- Add Task Form -->
+  <div class="form">
+    <input type="text" id="taskName" placeholder="Task Name" required>
+    <select id="taskStatus">
+      <option value="Pending">Pending</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Completed">Completed</option>
+    </select>
+    <button onclick="addTask()">Add Task</button>
+  </div>
+  
+  <!-- Task Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="taskTable">
+      <!-- Dynamic Rows -->
+    </tbody>
+  </table>
+  <script src="dashboard.js"></script>
+</body>
+</html>
