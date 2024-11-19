@@ -1,0 +1,77 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 60%;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 50px;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin-top: 30px;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.leave-balance {
+    text-align: left;
+}
+
+.leave-history {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+#login-error {
+    color: red;
+    text-align: center;
+}
+
+#logout-btn {
+    margin-top: 20px;
+    background-color: #f44336;
+}
