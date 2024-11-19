@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotation Survey</title>
+    <link rel="stylesheet" href="online.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Login Section -->
+        <div id="login-section" style="display: none;">
+            <h1>Login</h1>
+            <form id="login-form">
+                <input type="text" id="username" placeholder="Username" required><br>
+                <input type="password" id="password" placeholder="Password" required><br>
+                <button type="submit">Login</button>
+            </form>
+            <p id="error-message" style="color: red; display: none;">Invalid username or password</p>
+        </div>
+
+        <!-- Survey Section -->
+        <div id="survey-section" style="display: none;">
+            <h1>Quotation Survey</h1>
+            <div id="quotation-container"></div>
+            <div id="questions-container"></div>
+            <button id="submit-btn">Submit Answers</button>
+            <div id="thank-you-message" style="display: none;">Thank you for your responses!</div>
+            <button id="logout-btn">Logout</button>
+
+            <!-- Show responses -->
+            <h2>User Responses</h2>
+            <div id="user-responses">
+                <p>No responses yet.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Example set of quotations and questions
+        const quotations = [
+            "The only way to do great work is to love what you do. – Steve Jobs",
+            "In the end, we will remember not the words of our enemies, but the silence of our friends. – Martin Luther King Jr.",
+            "Life is 10% what happens to us and 90% how we react to it. – Charles R. Swindoll"
+        ];
+
+        const questions = [
+            "What does this quotation mean to you?",
+            "How relevant is this quotation in today's world? (Rate 1-5)",
+            "Who might benefit most from this quote?",
+            "Which author resonates with you the most and why?",
+            "Can you relate this quotation to a personal experience?"
+        ];
+
+        // Function to get 5 random questions
+        function getRandomQuestions() {
+            const randomQuestions = [];
+            while (randomQuestions.length < 5) {
+                const randomIndex = Math.floor(Math.random() * questions.length);
+                if (!randomQuestions.includes(questions[randomIndex])) {
+                    randomQuestions.push(questions[randomIndex]);
+                }
+            }
+            return randomQuestions;
+        }
+
+        // Function to display the survey content
+        function displaySurvey() {
+            const username = localStorage.getItem('username');
+            if (!username) {
+                document.getElementById('login-section').style.display = 'block'; // Show login if not logged in
+                document.getElementById('survey-section').style.display = 'none'; // Hide survey section
+                return;
+            }
+
+            // Show survey section if logged in
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('survey-section').style.display = 'block';
+
+            const randomQuotation = quotations[Math.floor(Math.random() * quotations.length)];
+            document.getElementById('quotation-container').innerHTML = `<p><strong>Quotation:</strong><br>${randomQuotation}</p>`;
+
+            const randomQuestions = getRandomQuestions();
+            let questionsHtml = '<form id="survey-form">';
+            randomQuestions.forEach((question, index) => {
+                questionsHtml += `
+                    <div class="question">
+                        <label for="q${index}">${question}</label><br>
+                        <input type="text" id="q${index}" name="q${index}" required>
+                    </div>
+                `;
+            });
+            questionsHtml += '</form>';
+            document.getElementById('questions-container').innerHTML = questionsHtml;
+
+            // Display User Responses
+            displayUserResponses();
+        }
+
+        // Display user responses
+        function displayUserResponses() {
+            const responses = JSON.parse(localStorage.getItem('responses')) || {};
+            const username = localStorage.getItem('username');
+
+            let responseHtml = `<p>${username} has submitted ${responses[username]?.length || 0} responses.</p>`;
+            if (responses[username] && responses[username].length > 0) {
+                responseHtml += '<ul>';
+                responses[username].forEach((response, index) => {
+                    responseHtml += `<li>Response ${index + 1}: ${response.join(', ')}</li>`;
+                });
+                responseHtml += '</ul>';
+            }
+            document.getElementById('user-responses').innerHTML = responseHtml;
+        }
+
+        // Handle login form submission
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Validate username and password (using mock users)
+            const users = [
+                { username: 'user1', password: 'password123' },
+                { username: 'user2', password: 'mypassword' }
+            ];
+
+            const user = users.find(u => u.username === username && u.password === password);
+
+            if (user) {
+                localStorage.setItem('username', username); // Save username in localStorage
+                displaySurvey(); // Show the survey page
+            } else {
+                document.getElementById('error-message').style.display = 'block'; // Show error if invalid
+            }
+        });
+
+        // Handle form submission (Simulate server response)
+        document.getElementById('submit-btn').addEventListener('click', () => {
+            const form = document.getElementById('survey-form');
+            if (form.checkValidity()) {
+                // Get responses
+                const responses = [];
+                for (let i = 0; i < form.length; i++) {
+                    const input = form[i];
+                    if (input.type === 'text') {
+                        responses.push(input.value);
+                    }
+                }
+
+                // Store responses in localStorage
+                const username = localStorage.getItem('username');
+                const allResponses = JSON.parse(localStorage.getItem('responses')) || {};
+                if (!allResponses[username]) {
+                    allResponses[username] = [];
+                }
+                allResponses[username].push(responses);
+
+                localStorage.setItem('responses', JSON.stringify(allResponses));
+
+                // Show thank you message
+                setTimeout(() => {
+                    document.getElementById('thank-you-message').style.display = 'block';
+                    displayUserResponses(); // Update the responses display
+                }, 500);
+            } else {
+                alert("Please answer all the questions before submitting.");
+            }
+        });
+
+        // Logout functionality
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            localStorage.removeItem('username');
+            window.location.reload(); // Reload to show the login section again
+        });
+
+        // Initial check to see if the user is logged in
+        if (localStorage.getItem('username')) {
+            displaySurvey(); // Display the survey if logged in
+        } else {
+            document.getElementById('login-section').style.display = 'block'; // Show login page if not logged in
+        }
+    </script>
+</body>
+</html>
